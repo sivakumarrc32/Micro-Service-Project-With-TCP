@@ -19,8 +19,15 @@ export class LoggingController {
    */
   signup(@Payload() data: CreateUserDto) {
     try {
-      console.log('data in controller', data);
-      return this.loggingService.signup(data);
+      const serviceStart = process.hrtime.bigint();
+      const result = this.loggingService.signup(data);
+      const serviceEnd = process.hrtime.bigint();
+      console.log(
+        `
+        [MICROSERVICE] Request for signup received at ${Number(serviceStart) / 1_000_000} ms
+        [MICROSERVICE] Processing time: ${(Number(serviceEnd - serviceStart) / 1_000_000).toFixed(3)} ms`,
+      );
+      return result;
     } catch (e: any) {
       if (e instanceof Error) {
         return {
@@ -43,8 +50,15 @@ export class LoggingController {
   login(@Payload() data: CreateUserDto) {
     console.log('data', data);
     try {
-      console.log('data in controller', data);
-      return this.loggingService.login(data);
+      const serviceStart = process.hrtime.bigint();
+      const result = this.loggingService.login(data);
+      const serviceEnd = process.hrtime.bigint();
+      console.log(
+        `
+        [MICROSERVICE] Request for signup received at ${Number(serviceStart) / 1_000_000} ms
+        [MICROSERVICE] Processing time: ${(Number(serviceEnd - serviceStart) / 1_000_000).toFixed(3)} ms`,
+      );
+      return result;
     } catch (e: unknown) {
       if (e instanceof Error) {
         return {

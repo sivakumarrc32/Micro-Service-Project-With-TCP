@@ -19,8 +19,15 @@ export class UsersController {
    */
   getProfile(@Payload() userId: string) {
     try {
-      console.log('userId', userId);
-      return this.usersService.getProfile(userId);
+      const serviceStart = process.hrtime.bigint();
+      const result = this.usersService.getProfile(userId);
+      const serviceEnd = process.hrtime.bigint();
+      console.log(
+        `
+        [MICROSERVICE] Request for signup received at ${Number(serviceStart) / 1_000_000} ms
+        [MICROSERVICE] Processing time: ${(Number(serviceEnd - serviceStart) / 1_000_000).toFixed(3)} ms`,
+      );
+      return result;
     } catch (e: unknown) {
       if (e instanceof Error) {
         return {
@@ -44,7 +51,15 @@ export class UsersController {
   updateProfile(@Payload() payload: { data: UpdateUserDto; userId: string }) {
     const { data, userId } = payload;
     try {
-      return this.usersService.updateProfile(userId, data);
+      const serviceStart = process.hrtime.bigint();
+      const result = this.usersService.updateProfile(userId, data);
+      const serviceEnd = process.hrtime.bigint();
+      console.log(
+        `
+        [MICROSERVICE] Request for signup received at ${Number(serviceStart) / 1_000_000} ms
+        [MICROSERVICE] Processing time: ${(Number(serviceEnd - serviceStart) / 1_000_000).toFixed(3)} ms`,
+      );
+      return result;
     } catch (e: unknown) {
       if (e instanceof Error) {
         return {

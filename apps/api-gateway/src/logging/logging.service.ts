@@ -16,7 +16,6 @@ export class LoggingService {
    * @param data data is received from the logging controller and the data to be sent to the logging application through the payload to be sent
    */
   signup(data: CreateUserDto) {
-    console.log('data in service', data);
     return this.loggingClient.send(LOGGING_PATTERN.SIGNUP, data);
   }
 

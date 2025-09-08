@@ -26,7 +26,6 @@ export class LoggingService {
    * @throws BadRequestException if the user already exists
    */
   async signup(data: CreateUserDto) {
-    console.log('data in service', data);
     const user = await this.Users.findOne({ email: data.email });
     console.log('user', user);
     if (user) {

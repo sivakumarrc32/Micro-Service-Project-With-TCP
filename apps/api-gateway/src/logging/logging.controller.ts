@@ -26,7 +26,6 @@ export class LoggingController {
    */
   async signup(@Body() data: CreateUserDto) {
     try {
-      console.log('data', data);
       const result = await lastValueFrom(this.loggingService.signup(data));
       return result;
     } catch (e: any) {
