@@ -24,7 +24,7 @@ It follows a modular design where each microservice is in the `apps` folder, and
 
 ---
 
-## ⚙️ Installatio
+## ⚙️ Installation
 1. Clone the repository:
 ```bash
 #For ssh 
